@@ -3,12 +3,16 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-    behaviors {
+    macros {
         double_zero: double_zero {
             compatible = "zmk,behavior-macro";
             label = "DOUBLE_ZERO";
             #binding-cells = <0>;
-            bindings = <&kp KP_N0 &kp KP_N0>;
+            bindings
+                = <&macro_press &kp KP_N0>
+                , <&macro_tap &kp KP_N0>
+                , <&macro_release &kp KP_N0>
+                ;
         };
     };
 
