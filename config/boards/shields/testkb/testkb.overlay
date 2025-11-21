@@ -34,4 +34,21 @@
             RC(4,0) RC(4,1) RC(4,2) RC(4,3)
         >;
     };
+
+    /* A simple physical layout node so ZMK will generate the `layouts` array
+     * for this shield. The `keys` property may be omitted here (it's required
+     * only for ZMK Studio) — the transform and kscan are referenced so the
+     * runtime can map positions and enable the matrix scanner.
+     */
+    physical_layout_0: physical_layout_0 {
+        compatible = "zmk,physical-layout";
+        display-name = "testkb";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+    };
+
+    /* Choose the physical layout as the default selection */
+    chosen {
+        zmk_physical_layout = &physical_layout_0;
+    };
 };
