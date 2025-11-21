@@ -47,7 +47,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &kp A &kp B &kp C &kp D &kp E
+                &mo 0 &kp B &kp C &kp D &kp E
             >;
         };
 
@@ -63,7 +63,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &kp A &kp B &kp C &kp D &kp E
+                &mo 0 &kp B &kp C &kp D &kp E
             >;
         };
 
@@ -79,7 +79,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &kp A &kp B &kp C &kp D &kp E
+                &mo 0 &kp B &kp C &kp D &kp E
             >;
         };
 
@@ -95,7 +95,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &kp A &kp B &kp C &kp D &kp E
+                &mo 0 &kp B &kp C &kp D &kp E
             >;
         };
     };
