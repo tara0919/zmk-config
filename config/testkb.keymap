@@ -23,15 +23,15 @@
             bindings = <
             //     Col0         Col1         Col2         Col3         Col4
             /* Row 0 - (レイヤー4), *, /, Backspace */
-                &tg 4 &trans          &kp KP_MULTIPLY  &kp KP_DIVIDE    &kp BSPC
+                &to 4 &trans          &kp KP_MULTIPLY  &kp KP_DIVIDE    &kp BSPC
             /* Row 1 - (レイヤー3), 7, 8, 9, (空) */
-                &tg 3 &kp KP_N7        &kp KP_N8       &kp KP_N9        &trans
+                &to 3 &kp KP_N7        &kp KP_N8       &kp KP_N9        &trans
             /* Row 2 - (レイヤー2), 4, 5, 6, - */
-                &tg 2 &kp KP_N4        &kp KP_N5       &kp KP_N6        &kp KP_MINUS
+                &to 2 &kp KP_N4        &kp KP_N5       &kp KP_N6        &kp KP_MINUS
             /* Row 3 - (レイヤー1), 1, 2, 3, + */
-                &tg 1 &kp KP_N1        &kp KP_N2       &kp KP_N3        &kp KP_PLUS
+                &to 1 &kp KP_N1        &kp KP_N2       &kp KP_N3        &kp KP_PLUS
             /* Row 4 - (デフォルトレイヤー0), 0, 00, ., Enter */
-                &tg 0 &kp KP_N0        &double_zero     &kp KP_DOT       &kp KP_ENTER
+                &to 0 &kp KP_N0        &double_zero     &kp KP_DOT       &kp KP_ENTER
             >;
         };
 
@@ -47,7 +47,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &tg 0 &kp B &kp C &kp D &kp E
+                &to 0 &kp B &kp C &kp D &kp E
             >;
         };
 
@@ -63,7 +63,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &tg 0 &kp C &kp C &kp D &kp E
+                &to 0 &kp C &kp C &kp D &kp E
             >;
         };
 
@@ -79,7 +79,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &tg 0 &kp D &kp C &kp D &kp E
+                &to 0 &kp D &kp C &kp D &kp E
             >;
         };
 
@@ -95,7 +95,7 @@
             /* Row 3 */
                 &kp F &kp G &kp H &kp I &kp J
             /* Row 4 */
-                &tg 0 &kp E &kp C &kp D &kp E
+                &to 0 &kp E &kp C &kp D &kp E
             >;
         };
     };
