@@ -1,0 +1,96 @@
+ZMK テンキー設定・デバッグ支援セッション記録（詳細版）
+日付: 2025-11-21
+
+---
+
+【主なやりとり・進捗】
+- Seeeduino XIAO BLE + testkb シールドで 5x4 テンキーを作成
+- デバイスツリー overlay, keymap, conf の作成・修正
+- CI ビルド失敗（layouts 未定義）→ overlay に physical-layout ノード追加で解決
+- キーマップ（numpad 配列、double_zero マクロ）を実装
+- ビルド成功、.uf2 ファームをボードに書き込み
+- HID キーボードとして認識されるも、最初は入力できず
+- シリアルログ取得用 PowerShell スクリプトを作成・実行
+- COM ポートは開けたが、物理接触不良が原因で入力できていなかったことが判明
+- 接触改善後、テンキーとして正常動作を確認
+- 今後はこの構成を軸にキーマップ編集を進める方針
+
+---
+
+【主な変更内容・ファイルごとの詳細】
+
+■ config/boards/shields/testkb/testkb.overlay
+- 5行×4列の行列スキャン（kscan0）を定義。
+- col-gpios: &xiao_d 0,1,2,3 / row-gpios: &xiao_d 4,5,6,7,8
+- matrix-transform（default_transform）を定義し、RC(row,col)で物理→論理マップを記述。
+- physical_layout_0 ノードを追加し、transform/kscan を参照。
+- chosen ノードで zmk_physical_layout を physical_layout_0 に設定。
+
+■ config/testkb.keymap
+- 5行×4列の numpad 配列を row-major で定義。
+- double_zero マクロ（"00"を出力）を macros セクションで定義。
+- 各行のコメントで物理配置を明示。
+
+■ config/testkb.conf
+- CONFIG_ZMK_BLE=y, CONFIG_ZMK_USB=y で BLE/USB 両対応に。
+- CONFIG_ZMK_KEYBOARD_NAME="testkb" でデバイス名を指定。
+- 不要な/未定義の Kconfig オプションを削除。
+
+■ build.yaml
+- seeeduino_xiao_ble + testkb のビルドマトリクスを定義。
+- artifact-name: seeeduino_xiao_ble-testkb で出力ファイル名を指定。
+
+■ .github/workflows/build.yml, config/west.yml
+- 上流 ZMK のワークフロー参照バージョンを複数回調整（main/v0.3/v3.5.0 など）
+- 最終的に main で安定ビルド。
+
+■ scripts/zmk_serial_logger.ps1
+- PowerShell で COM ポートからシリアルログを取得するスクリプトを新規作成。
+- ポート名/ボーレート/出力ファイルを引数で指定可能。
+- ログを zmk-log.txt に保存し、コンソールにも出力。
+
+■ support-session-20251121.txt
+- チャットセッションの要約・進捗・キーマップ内容を記録（本ファイル）。
+
+---
+
+【トラブルシュート・デバッグの流れ】
+- ビルド失敗時は CI ログを確認し、Kconfig/overlay の修正を繰り返し。
+- layouts 未定義エラーは physical-layout ノード追加で解決。
+- 入力できない場合は USB HID 列挙状況とシリアルログで切り分け。
+- シリアルログ取得用スクリプトで COM ポートを監視し、物理接触不良を特定。
+- 必要に応じて keymap/overlay の行列順や RC マップを再確認。
+
+---
+
+【現状のキーマップ配列】
+Row\Col | Col0 | Col1 | Col2 | Col3
+---|---|---|---|---
+Row 0 | &trans | &kp KP_MULTIPLY | &kp KP_DIVIDE | &kp BSPC
+Row 1 | &kp KP_N7 | &kp KP_N8 | &kp KP_N9 | &trans
+Row 2 | &kp KP_N4 | &kp KP_N5 | &kp KP_N6 | &kp KP_MINUS
+Row 3 | &kp KP_N1 | &kp KP_N2 | &kp KP_N3 | &kp KP_PLUS
+Row 4 | &kp KP_N0 | &double_zero | &kp KP_DOT | &kp KP_ENTER
+
+---
+
+【サポート内容】
+- キーマップ編集方法、マクロ例、レイヤー追加例の案内
+- シリアルログ取得・解析手順の案内
+- PowerShell スクリプトの作成・修正
+- デバイスツリーのピン割当確認方法の案内
+- CI artifact の取得・書き込み・動作確認フロー
+- 必要に応じてパッチ作成やデバッグ用ビルドの提案
+
+---
+
+【今後できること】
+- キーマップの具体的な編集サポート
+- マクロやレイヤーの追加例作成
+- CI artifact 自動公開の追加
+- ピン割当や配線図の確認
+- デバッグ用ログレベル変更や追加スクリプト作成
+
+---
+
+このファイルはチャットセッションの詳細な記録です。各ファイルの変更点やトラブルシュートの流れも含めています。さらに詳細な履歴やコマンド例が必要な場合はご相談ください。
