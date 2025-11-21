@@ -1,6 +1,6 @@
 manifest:
   defaults:
-    revision: v3.5
+    revision: v3.5.0
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
