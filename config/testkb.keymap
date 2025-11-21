@@ -21,17 +21,81 @@
 
         default_layer {
             bindings = <
-            //     Col0         Col1         Col2         Col3
-            /* Row 0 - (空), *, /, Backspace */
-                &trans &trans          &kp KP_MULTIPLY  &kp KP_DIVIDE    &kp BSPC
-            /* Row 1 - 7, 8, 9, (空) */
-                &trans &kp KP_N7        &kp KP_N8       &kp KP_N9        &trans
-            /* Row 2 - 4, 5, 6, - */
-                &trans &kp KP_N4        &kp KP_N5       &kp KP_N6        &kp KP_MINUS
-            /* Row 3 - 1, 2, 3, + */
-                &trans &kp KP_N1        &kp KP_N2       &kp KP_N3        &kp KP_PLUS
-            /* Row 4 - 0, 00, ., Enter */
-                &trans &kp KP_N0        &double_zero     &kp KP_DOT       &kp KP_ENTER
+            //     Col0         Col1         Col2         Col3         Col4
+            /* Row 0 - (レイヤー4), *, /, Backspace */
+                &mo 4 &trans          &kp KP_MULTIPLY  &kp KP_DIVIDE    &kp BSPC
+            /* Row 1 - (レイヤー3), 7, 8, 9, (空) */
+                &mo 3 &kp KP_N7        &kp KP_N8       &kp KP_N9        &trans
+            /* Row 2 - (レイヤー2), 4, 5, 6, - */
+                &mo 2 &kp KP_N4        &kp KP_N5       &kp KP_N6        &kp KP_MINUS
+            /* Row 3 - (レイヤー1), 1, 2, 3, + */
+                &mo 1 &kp KP_N1        &kp KP_N2       &kp KP_N3        &kp KP_PLUS
+            /* Row 4 - (デフォルトレイヤー0), 0, 00, ., Enter */
+                &mo 0 &kp KP_N0        &double_zero     &kp KP_DOT       &kp KP_ENTER
+            >;
+        };
+
+        layer_1 {
+            bindings = <
+            //     Col0         Col1         Col2         Col3         Col4
+            /* Row 0 */
+                &kp U &kp V &kp W &kp X &kp Y
+            /* Row 1 */
+                &kp P &kp Q &kp R &kp S &kp T
+            /* Row 2 */
+                &kp K &kp L &kp M &kp N &kp O
+            /* Row 3 */
+                &kp F &kp G &kp H &kp I &kp J
+            /* Row 4 */
+                &kp A &kp B &kp C &kp D &kp E
+            >;
+        };
+
+        layer_2 {
+            bindings = <
+            //     Col0         Col1         Col2         Col3         Col4
+            /* Row 0 */
+                &kp U &kp V &kp W &kp X &kp Y
+            /* Row 1 */
+                &kp P &kp Q &kp R &kp S &kp T
+            /* Row 2 */
+                &kp K &kp L &kp M &kp N &kp O
+            /* Row 3 */
+                &kp F &kp G &kp H &kp I &kp J
+            /* Row 4 */
+                &kp A &kp B &kp C &kp D &kp E
+            >;
+        };
+
+        layer_3 {
+            bindings = <
+            //     Col0         Col1         Col2         Col3         Col4
+            /* Row 0 */
+                &kp U &kp V &kp W &kp X &kp Y
+            /* Row 1 */
+                &kp P &kp Q &kp R &kp S &kp T
+            /* Row 2 */
+                &kp K &kp L &kp M &kp N &kp O
+            /* Row 3 */
+                &kp F &kp G &kp H &kp I &kp J
+            /* Row 4 */
+                &kp A &kp B &kp C &kp D &kp E
+            >;
+        };
+
+        layer_4 {
+            bindings = <
+            //     Col0         Col1         Col2         Col3         Col4
+            /* Row 0 */
+                &kp U &kp V &kp W &kp X &kp Y
+            /* Row 1 */
+                &kp P &kp Q &kp R &kp S &kp T
+            /* Row 2 */
+                &kp K &kp L &kp M &kp N &kp O
+            /* Row 3 */
+                &kp F &kp G &kp H &kp I &kp J
+            /* Row 4 */
+                &kp A &kp B &kp C &kp D &kp E
             >;
         };
     };
