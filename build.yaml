@@ -20,6 +20,5 @@
 ---
 include:
   - board: seeeduino_xiao_ble
-    shield: test_left
-  - board: seeeduino_xiao_ble
-    shield: test_right
+    shield: testkb
+    artifact-name: "seeeduino_xiao_ble-testkb"
