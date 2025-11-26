@@ -1,5 +1,7 @@
 # Copyright (c) 2025
 # SPDX-License-Identifier: MIT
-
+# 左手側シールド有効化フラグ
+# west build 実行時に -DSHIELD=tarakkie_left を指定すると shields_list_contains が一致し true になります。
+# true のときこのシールド用の overlay / keymap などがビルドへ取り込まれます。
 config SHIELD_TARAKKIE_LEFT
     def_bool $(shields_list_contains,tarakkie_left)

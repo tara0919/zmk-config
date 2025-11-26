@@ -1,11 +1,14 @@
 # Copyright (c) 2025
 # SPDX-License-Identifier: MIT
 
+# 右手側が選択された場合の設定。右は Split の central（親）側で、左へ接続管理/BLE広告を行います。
 if SHIELD_TARAKKIE_RIGHT
 
+# BLE 等で表示される右手側名称。
 config ZMK_KEYBOARD_NAME
     default "Tarakkie Right"
 
+# central 役割フラグ: y でこのファームがホスト側になる。左側は implicit に peripheral。
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 

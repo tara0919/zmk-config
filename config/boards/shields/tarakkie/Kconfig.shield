@@ -1,5 +1,6 @@
 # Copyright (c) 2025
 # SPDX-License-Identifier: MIT
-
+# 一体型（非分割）シールド有効化フラグ
+# -DSHIELD=tarakkie を指定した場合にこの設定が有効になり分割関連の追加設定を使わず単体で動作します。
 config SHIELD_TARAKKIE
     def_bool $(shields_list_contains,tarakkie)

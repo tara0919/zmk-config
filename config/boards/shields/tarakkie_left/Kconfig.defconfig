@@ -1,8 +1,11 @@
 # Copyright (c) 2025
 # SPDX-License-Identifier: MIT
 
+# 左手側シールドが選択された場合のみ以下の設定を適用します。
+# 分割構成では左は peripheral（子）側として動作し、右 central が接続管理を担当します。
 if SHIELD_TARAKKIE_LEFT
 
+# BLE ペアリング一覧・ログ表示などに使われる識別名。好みに応じて変更可能。
 config ZMK_KEYBOARD_NAME
     default "Tarakkie Left"
 

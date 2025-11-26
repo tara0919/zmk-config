@@ -1,3 +1,4 @@
+## 一体型構成（分割しない）の場合の名称設定。
 if SHIELD_TARAKKIE
 
 config ZMK_KEYBOARD_NAME

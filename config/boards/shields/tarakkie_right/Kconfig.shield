@@ -1,5 +1,6 @@
 # Copyright (c) 2025
 # SPDX-License-Identifier: MIT
-
+# 右手側シールド有効化フラグ
+# -DSHIELD=tarakkie_right を指定したビルドで true になり中央 (central) 側として振る舞う設定が読み込まれます。
 config SHIELD_TARAKKIE_RIGHT
     def_bool $(shields_list_contains,tarakkie_right)
