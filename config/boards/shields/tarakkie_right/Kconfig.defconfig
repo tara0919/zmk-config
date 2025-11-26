@@ -1,0 +1,12 @@
+# Copyright (c) 2025
+# SPDX-License-Identifier: MIT
+
+if SHIELD_TARAKKIE_RIGHT
+
+config ZMK_KEYBOARD_NAME
+    default "Tarakkie Right"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif

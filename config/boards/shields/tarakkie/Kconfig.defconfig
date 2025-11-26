@@ -1,0 +1,6 @@
+if SHIELD_TARAKKIE
+
+config ZMK_KEYBOARD_NAME
+    default "Tarakkie"
+
+endif

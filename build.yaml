@@ -19,6 +19,17 @@
 #
 ---
 include:
+  # Legacy single-board configuration (for reference)
   - board: seeeduino_xiao_ble
-    shield: testkb
-    artifact-name: "seeeduino_xiao_ble-testkb"
+    shield: tarakkie
+    artifact-name: "seeeduino_xiao_ble-tarakkie"
+  
+  # Split keyboard configuration - Left side (peripheral)
+  - board: seeeduino_xiao_ble
+    shield: tarakkie_left
+    artifact-name: "seeeduino_xiao_ble-tarakkie_left"
+  
+  # Split keyboard configuration - Right side (central)
+  - board: seeeduino_xiao_ble
+    shield: tarakkie_right
+    artifact-name: "seeeduino_xiao_ble-tarakkie_right"

@@ -1,0 +1,221 @@
+/*
+ * Copyright (c) 2025
+ * SPDX-License-Identifier: MIT
+ *
+ * Tarakkie Split Keyboard Keymap
+ * - Left side: 30 keys + 2 encoders (horizontal + vertical)
+ * - Right side: 30 keys + 1 encoder (horizontal) + trackball
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    /* ============================================================
+     * Keymap Configuration
+     * Total: 60 keys (30 per side)
+     * Layers: 5 (0~4)
+     * ============================================================ */
+    
+    keymap {
+        compatible = "zmk,keymap";
+
+        /* ============================================================
+         * Layer 0 - Default Layer
+         * Left side: QWERTY layout + thumb keys
+         * Right side: Number pad + navigation
+         * ============================================================ */
+        
+        default_layer {
+            label = "Default";
+            
+            bindings = <
+                /* Left side (30 keys) */
+                /* Matrix 4x6 */
+                &kp Q      &kp W      &kp E      &kp R
+                &kp A      &kp S      &kp D      &kp F
+                &kp Z      &kp X      &kp C      &kp V
+                &kp ESC    &kp TAB    &kp LSHFT  &kp LCTRL
+                &to 1      &to 2      &to 3      &to 4
+                &kp SPACE  &kp BSPC   &kp RET    &kp LGUI
+                /* Direct keys (6) */
+                &kp T      &kp G      &kp B      &kp LALT
+                &kp DEL    &kp HOME
+                
+                /* Right side (30 keys) */
+                /* Matrix 4x6 */
+                &kp N7     &kp N8     &kp N9     &kp KP_MINUS
+                &kp N4     &kp N5     &kp N6     &kp KP_PLUS
+                &kp N1     &kp N2     &kp N3     &kp KP_MULTIPLY
+                &kp N0     &kp DOT    &kp COMMA  &kp KP_DIVIDE
+                &kp UP     &kp DOWN   &kp LEFT   &kp RIGHT
+                &kp PGUP   &kp PGDN   &kp HOME   &kp END
+                /* Direct keys (6) */
+                &kp RET    &kp BSPC   &kp DEL    &kp INS
+                &kp RALT   &kp RCTRL
+            >;
+            
+            /* ============================================================
+             * Encoder Mappings for Layer 0
+             * Left horizontal: Volume Up/Down
+             * Left vertical: Scroll Up/Down
+             * Right horizontal: Mouse Wheel Up/Down
+             * ============================================================ */
+            
+            sensor-bindings = <
+                &inc_dec_kp C_VOL_UP C_VOL_DN        // Left horizontal encoder
+                &inc_dec_kp PG_UP PG_DN              // Left vertical encoder
+                &inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DN  // Right horizontal encoder
+            >;
+        };
+
+        /* ============================================================
+         * Layer 1 - Function Layer
+         * Function keys and media controls
+         * ============================================================ */
+        
+        layer_1 {
+            label = "Function";
+            
+            bindings = <
+                /* Left side */
+                &kp F1     &kp F2     &kp F3     &kp F4
+                &kp F5     &kp F6     &kp F7     &kp F8
+                &kp F9     &kp F10    &kp F11    &kp F12
+                &trans     &trans     &trans     &trans
+                &to 0      &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+                
+                /* Right side */
+                &kp C_PREV &kp C_PLAY_PAUSE &kp C_NEXT &kp C_MUTE
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+            >;
+            
+            sensor-bindings = <
+                &inc_dec_kp C_VOL_UP C_VOL_DN
+                &inc_dec_kp C_BRI_UP C_BRI_DN    // Brightness control
+                &inc_dec_kp C_NEXT C_PREV        // Media track
+            >;
+        };
+
+        /* ============================================================
+         * Layer 2 - Symbol Layer
+         * Symbols and special characters
+         * ============================================================ */
+        
+        layer_2 {
+            label = "Symbol";
+            
+            bindings = <
+                /* Left side */
+                &kp EXCL   &kp AT     &kp HASH   &kp DLLR
+                &kp PRCNT  &kp CARET  &kp AMPS   &kp STAR
+                &kp LPAR   &kp RPAR   &kp LBRC   &kp RBRC
+                &trans     &trans     &trans     &trans
+                &trans     &to 0      &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+                
+                /* Right side */
+                &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT
+                &kp BSLH   &kp PIPE   &kp SEMI   &kp COLON
+                &kp APOS   &kp DQT    &kp COMMA  &kp DOT
+                &kp GRAVE  &kp TILDE  &kp LT     &kp GT
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+            >;
+            
+            sensor-bindings = <
+                &inc_dec_kp C_VOL_UP C_VOL_DN
+                &inc_dec_kp PG_UP PG_DN
+                &inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DN
+            >;
+        };
+
+        /* ============================================================
+         * Layer 3 - Navigation Layer
+         * Arrow keys and navigation
+         * ============================================================ */
+        
+        layer_3 {
+            label = "Nav";
+            
+            bindings = <
+                /* Left side */
+                &trans     &trans     &trans     &trans
+                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
+                &kp HOME   &kp PGDN   &kp PGUP   &kp END
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &to 0      &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+                
+                /* Right side */
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+            >;
+            
+            sensor-bindings = <
+                &inc_dec_kp LEFT RIGHT
+                &inc_dec_kp DOWN UP
+                &inc_dec_kp PG_DN PG_UP
+            >;
+        };
+
+        /* ============================================================
+         * Layer 4 - System Layer
+         * Bluetooth controls and system functions
+         * ============================================================ */
+        
+        layer_4 {
+            label = "System";
+            
+            bindings = <
+                /* Left side */
+                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
+                &bt BT_CLR   &trans        &trans        &trans
+                &trans       &trans        &trans        &trans
+                &trans       &trans        &trans        &trans
+                &trans       &trans        &trans        &to 0
+                &trans       &trans        &trans        &trans
+                &trans       &trans        &trans        &trans
+                &trans       &trans
+                
+                /* Right side */
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans
+                &trans     &trans
+            >;
+            
+            sensor-bindings = <
+                &inc_dec_kp C_VOL_UP C_VOL_DN
+                &inc_dec_kp PG_UP PG_DN
+                &inc_dec_kp C_AC_SCROLL_UP C_AC_SCROLL_DN
+            >;
+        };
+    };
+};

@@ -1,0 +1,178 @@
+/*
+ * Copyright (c) 2025
+ * SPDX-License-Identifier: MIT
+ *
+ * Tarakkie Right (Central/Master)
+ * - 30 keys (4x6 matrix + 6 individual keys)
+ * - MCP23017 I2C GPIO expander
+ * - PMW3610 trackball (SPI)
+ * - Horizontal rotary encoder with click
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    /* ============================================================
+     * I2C GPIO Expander (MCP23017)
+     * Address: 0x20
+     * Usage:
+     *   - GPA0~5: Matrix rows (6 rows)
+     *   - GPB0~5: Individual keys (6 keys)
+     *   - GPB6~7: Horizontal encoder A/B signals
+     * ============================================================ */
+    
+    /* Enable I2C bus */
+    &i2c0 {
+        status = "okay";
+        
+        mcp23017_right: mcp23017@20 {
+            compatible = "microchip,mcp23017";
+            reg = <0x20>;
+            gpio-controller;
+            #gpio-cells = <2>;
+        };
+    };
+
+    /* ============================================================
+     * SPI for PMW3610 Trackball Sensor
+     * Pins:
+     *   - MOSI: &xiao_d 7
+     *   - MISO: &xiao_d 8
+     *   - SCLK: &xiao_d 9
+     *   - CS:   &xiao_d 10
+     * 
+     * Note: Requires PMW3610 driver in ZMK
+     * ============================================================ */
+
+    /* ============================================================
+     * Key Matrix Scanner
+     * - Columns: 4 (MCU GPIO &xiao_d 0~3)
+     * - Rows: 6 (MCP23017 GPA0~5)
+     * - Diode direction: COL2ROW
+     * ============================================================ */
+    
+    kscan_right: kscan_right {
+        compatible = "zmk,kscan-gpio-matrix";
+        diode-direction = "col2row";
+        wakeup-source;
+
+        col-gpios
+            = <&xiao_d 0 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 1 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 2 GPIO_ACTIVE_HIGH>
+            , <&xiao_d 3 GPIO_ACTIVE_HIGH>
+            ;
+
+        row-gpios
+            = <&mcp23017_right 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&mcp23017_right 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&mcp23017_right 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&mcp23017_right 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&mcp23017_right 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&mcp23017_right 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+    };
+
+    /* ============================================================
+     * Direct GPIO Keys (Individual Keys)
+     * - 6 keys connected to MCP23017 GPB0~5
+     * ============================================================ */
+    
+    kscan_direct_right: kscan_direct_right {
+        compatible = "zmk,kscan-gpio-direct";
+        
+        input-gpios
+            = <&mcp23017_right 8  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&mcp23017_right 9  (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&mcp23017_right 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&mcp23017_right 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&mcp23017_right 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&mcp23017_right 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    };
+
+    /* ============================================================
+     * Composite Key Scanner (Matrix + Direct)
+     * Combines both matrix and direct keys into one scanner
+     * ============================================================ */
+    
+    kscan_composite_right: kscan_composite_right {
+        compatible = "zmk,kscan-composite";
+        rows = <7>;
+        columns = <4>;
+        
+        matrix {
+            kscan = <&kscan_right>;
+        };
+        
+        direct {
+            kscan = <&kscan_direct_right>;
+            row-offset = <6>;
+            column-offset = <0>;
+        };
+    };
+
+    /* ============================================================
+     * Matrix Transform
+     * Maps physical key positions to logical positions
+     * Layout: 30 keys total
+     *   - 24 matrix keys (4 cols x 6 rows)
+     *   - 6 direct keys
+     * ============================================================ */
+    
+    default_transform_right: keymap_transform_right {
+        compatible = "zmk,matrix-transform";
+        columns = <4>;
+        rows = <7>;
+        
+        map = <
+            RC(0,0) RC(0,1) RC(0,2) RC(0,3)
+            RC(1,0) RC(1,1) RC(1,2) RC(1,3)
+            RC(2,0) RC(2,1) RC(2,2) RC(2,3)
+            RC(3,0) RC(3,1) RC(3,2) RC(3,3)
+            RC(4,0) RC(4,1) RC(4,2) RC(4,3)
+            RC(5,0) RC(5,1) RC(5,2) RC(5,3)
+            RC(6,0) RC(6,1) RC(6,2) RC(6,3)
+            RC(6,4) RC(6,5)
+        >;
+    };
+
+    /* ============================================================
+     * Horizontal Rotary Encoder (with click)
+     * Pins:
+     *   - A signal: MCP23017 GPB6
+     *   - B signal: MCP23017 GPB7
+     *   - Click switch: &xiao_d 4
+     * ============================================================ */
+    
+    encoder_horizontal_right: encoder_horizontal_right {
+        compatible = "alps,ec11";
+        a-gpios = <&mcp23017_right 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&mcp23017_right 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        resolution = <4>;
+        status = "okay";
+    };
+
+    /* ============================================================
+     * Physical Layout Definition
+     * Required for ZMK Studio and layout selection
+     * ============================================================ */
+    
+    physical_layout_right: physical_layout_right {
+        compatible = "zmk,physical-layout";
+        display-name = "Tarakkie Right";
+        transform = <&default_transform_right>;
+        kscan = <&kscan_composite_right>;
+    };
+
+    /* ============================================================
+     * Chosen Nodes
+     * Specify default physical layout and key scanner
+     * ============================================================ */
+    
+    chosen {
+        zmk,physical-layout = &physical_layout_right;
+        zmk,kscan = <&kscan_composite_right>;
+        zmk,matrix-transform = &default_transform_right>;
+    };
+};
