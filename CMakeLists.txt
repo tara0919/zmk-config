@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
-# Add custom drivers
-add_subdirectory(drivers)
+if(CONFIG_GPIO_MCP230XX)
+  add_subdirectory(drivers)
+endif()

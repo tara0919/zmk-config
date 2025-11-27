@@ -1,5 +1,5 @@
 build:
-  cmake: .
+  cmake: CMakeLists.txt
   kconfig: drivers/Kconfig
   settings:
     board_root: .
