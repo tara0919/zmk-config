@@ -1,0 +1,5 @@
+# Copyright (c) 2024 ZMK Config with MCP23xxx driver backport
+# SPDX-License-Identifier: Apache-2.0
+
+# Source the MCP23xxx driver Kconfig
+source "drivers/gpio/Kconfig.mcp23xxx"

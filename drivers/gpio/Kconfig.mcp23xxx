@@ -1,0 +1,34 @@
+# MCP23XXX GPIO configuration options
+
+# Copyright (c) 2021 metraTec GmbH
+#
+# SPDX-License-Identifier: Apache-2.0
+
+config GPIO_MCP23XXX
+	bool
+	help
+	  Enable support for the Microchip 23xxx I2C/SPI IO
+	  expanders.
+
+menuconfig GPIO_MCP230XX
+	bool "MCP230XX I2C-based GPIO chip"
+	default y
+	depends on DT_HAS_MICROCHIP_MCP23008_ENABLED || \
+	           DT_HAS_MICROCHIP_MCP23009_ENABLED || \
+	           DT_HAS_MICROCHIP_MCP23016_ENABLED || \
+	           DT_HAS_MICROCHIP_MCP23017_ENABLED || \
+	           DT_HAS_MICROCHIP_MCP23018_ENABLED
+	select I2C
+	select GPIO_MCP23XXX
+	help
+	  Enable driver for MCP230XX I2C-based GPIO chip.
+
+if GPIO_MCP230XX
+
+config GPIO_MCP230XX_INIT_PRIORITY
+	int "MCP230XX GPIO expander init priority"
+	default 75
+	help
+	  Device driver initialization priority.
+
+endif #GPIO_MCP230XX
