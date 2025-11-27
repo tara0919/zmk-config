@@ -12,29 +12,29 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/gpio/gpio.h>
 
-/ {
-    /* ============================================================
-     * I2C GPIO Expander (MCP23017)
-     * Address: 0x20
-     * Usage:
-     *   - GPA0~5: Matrix columns (6 columns)
-     *   - GPB0~5: Individual keys (6 keys)
-     *   - GPB6~7: Horizontal encoder A/B signals
-     * ============================================================ */
+/* ============================================================
+ * I2C GPIO Expander (MCP23017)
+ * Address: 0x20
+ * Usage:
+ *   - GPA0~5: Matrix columns (6 columns)
+ *   - GPB0~5: Individual keys (6 keys)
+ *   - GPB6~7: Horizontal encoder A/B signals
+ * ============================================================ */
+
+&i2c0 {
+    status = "okay";
     
-    /* Enable I2C bus */
-    &i2c0 {
+    mcp23017_right: mcp23017@20 {
+        compatible = "microchip,mcp230xx";
+        reg = <0x20>;
+        gpio-controller;
+        #gpio-cells = <2>;
+        ngpios = <16>;
         status = "okay";
-        
-        mcp23017_right: mcp23017@20 {
-            compatible = "microchip,mcp230xx";
-            reg = <0x20>;
-            gpio-controller;
-            #gpio-cells = <2>;
-            ngpios = <16>;
-            status = "okay";
-        };
     };
+};
+
+/ {
 
     /* ============================================================
      * SPI for PMW3610 Trackball Sensor
