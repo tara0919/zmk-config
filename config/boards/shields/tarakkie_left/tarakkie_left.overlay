@@ -30,6 +30,7 @@
         reg = <0x20>;
         gpio-controller;
         #gpio-cells = <2>;
+        ngpios = <16>;
         status = "okay";
     };
 };
