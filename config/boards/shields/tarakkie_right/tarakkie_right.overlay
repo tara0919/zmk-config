@@ -173,6 +173,6 @@
     chosen {
         zmk,physical-layout = &physical_layout_right;
         zmk,kscan = <&kscan_composite_right>;
-        zmk,matrix-transform = &default_transform_right>;
+        zmk,matrix-transform = <&default_transform_right>;
     };
 };
