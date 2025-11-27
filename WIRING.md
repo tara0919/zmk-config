@@ -9,8 +9,18 @@
 このドキュメントでは Tarakkie 分割キーボードの物理配線、ピン配置、部品選定の詳細を説明します。
 左右独立した2つのユニットで構成され、BLE（Bluetooth Low Energy）で無線接続します。
 
+**キーレイアウト（片側）:**
+- マトリクス部分: 4行 × 6列 = 24キー
+- ダイレクトキー: 6キー
+- 合計: 30キー（片側）
+
 **English:**
 60-key split keyboard (30 keys per side) + trackball + 3 rotary encoders
+
+**Key Layout (per side):**
+- Matrix: 4 rows × 6 columns = 24 keys
+- Direct keys: 6 keys
+- Total: 30 keys per side
 
 ---
 
@@ -65,10 +75,10 @@
 |---------|----------|--------|
 | D0 | I2C データ線<br>I2C SDA | MCP23017 |
 | D1 | I2C クロック線<br>I2C SCL | MCP23017 |
-| D2 | マトリクス列 0<br>Column 0 | キースイッチマトリクス<br>Matrix |
-| D3 | マトリクス列 1<br>Column 1 | キースイッチマトリクス<br>Matrix |
-| D4 | マトリクス列 2<br>Column 2 | キースイッチマトリクス<br>Matrix |
-| D5 | マトリクス列 3<br>Column 3 | キースイッチマトリクス<br>Matrix |
+| D2 | マトリクス行 0<br>Row 0 | キースイッチマトリクス<br>Matrix |
+| D3 | マトリクス行 1<br>Row 1 | キースイッチマトリクス<br>Matrix |
+| D4 | マトリクス行 2<br>Row 2 | キースイッチマトリクス<br>Matrix |
+| D5 | マトリクス行 3<br>Row 3 | キースイッチマトリクス<br>Matrix |
 | D6 | 水平エンコーダーSW<br>Horizontal Encoder SW | TTC エンコーダー<br>TTC Encoder |
 | D7 | 垂直エンコーダーSW<br>Vertical Encoder SW | ALPS EC11 |
 | D8-D10 | （予約）<br>(Reserved) | - |
@@ -77,12 +87,12 @@
 
 | MCP ピン<br>MCP Pin | 機能<br>Function | デバイス/用途<br>Device/Purpose |
 |---------|----------|----------------|
-| GPA0 | 行 0<br>Row 0 | マトリクス行<br>Matrix row |
-| GPA1 | 行 1<br>Row 1 | マトリクス行<br>Matrix row |
-| GPA2 | 行 2<br>Row 2 | マトリクス行<br>Matrix row |
-| GPA3 | 行 3<br>Row 3 | マトリクス行<br>Matrix row |
-| GPA4 | 行 4<br>Row 4 | マトリクス行<br>Matrix row |
-| GPA5 | 行 5<br>Row 5 | マトリクス行<br>Matrix row |
+| GPA0 | 列 0<br>Column 0 | マトリクス列<br>Matrix column |
+| GPA1 | 列 1<br>Column 1 | マトリクス列<br>Matrix column |
+| GPA2 | 列 2<br>Column 2 | マトリクス列<br>Matrix column |
+| GPA3 | 列 3<br>Column 3 | マトリクス列<br>Matrix column |
+| GPA4 | 列 4<br>Column 4 | マトリクス列<br>Matrix column |
+| GPA5 | 列 5<br>Column 5 | マトリクス列<br>Matrix column |
 | GPA6 | 垂直エンコーダー A相<br>Vertical Encoder A | ALPS EC11 Phase A |
 | GPA7 | 垂直エンコーダー B相<br>Vertical Encoder B | ALPS EC11 Phase B |
 | GPB0 | 個別キー 0<br>Direct Key 0 | 個別キー<br>Individual key |
@@ -100,13 +110,13 @@
 XIAO BLE (左 / Left)
 ├─ D0 (SDA) ────────────┬─ MCP23017 SDA
 ├─ D1 (SCL) ────────────┼─ MCP23017 SCL
-├─ D2-D5 ───────────────┼─ マトリクス列 0-3 / Matrix Columns 0-3
+├─ D2-D5 ───────────────┼─ マトリクス行 0-3 / Matrix Rows 0-3
 ├─ D6 ──────────────────┼─ 水平エンコーダーSW / Horizontal Encoder SW
 ├─ D7 ──────────────────┼─ 垂直エンコーダーSW / Vertical Encoder SW
 └─ GND/3.3V ────────────┴─ MCP23017 電源 / Power
 
 MCP23017 (左 / Left)
-├─ GPA0-GPA5 ───────────── マトリクス行 0-5 / Matrix Rows 0-5
+├─ GPA0-GPA5 ───────────── マトリクス列 0-5 / Matrix Columns 0-5
 ├─ GPA6-GPA7 ───────────── 垂直エンコーダー A/B / Vertical Encoder A/B
 ├─ GPB0-GPB5 ───────────── 個別キー 0-5 / Direct Keys 0-5
 └─ GPB6-GPB7 ───────────── 水平エンコーダー A/B / Horizontal Encoder A/B
@@ -122,10 +132,10 @@ MCP23017 (左 / Left)
 |---------|----------|--------|
 | D0 | I2C データ線<br>I2C SDA | MCP23017 |
 | D1 | I2C クロック線<br>I2C SCL | MCP23017 |
-| D2 | マトリクス列 0<br>Column 0 | キースイッチマトリクス<br>Matrix |
-| D3 | マトリクス列 1<br>Column 1 | キースイッチマトリクス<br>Matrix |
-| D4 | マトリクス列 2<br>Column 2 | キースイッチマトリクス<br>Matrix |
-| D5 | マトリクス列 3<br>Column 3 | キースイッチマトリクス<br>Matrix |
+| D2 | マトリクス行 0<br>Row 0 | キースイッチマトリクス<br>Matrix |
+| D3 | マトリクス行 1<br>Row 1 | キースイッチマトリクス<br>Matrix |
+| D4 | マトリクス行 2<br>Row 2 | キースイッチマトリクス<br>Matrix |
+| D5 | マトリクス行 3<br>Row 3 | キースイッチマトリクス<br>Matrix |
 | D6 | 水平エンコーダーSW<br>Horizontal Encoder SW | TTC エンコーダー<br>TTC Encoder |
 | D7 | SPI チップセレクト<br>SPI CS | PMW3610 |
 | D8 | SPI MOSI | PMW3610 |
@@ -136,7 +146,7 @@ MCP23017 (左 / Left)
 
 | MCP ピン<br>MCP Pin | 機能<br>Function | デバイス/用途<br>Device/Purpose |
 |---------|----------|----------------|
-| GPA0-5 | 行 0-5<br>Row 0-5 | マトリクス行<br>Matrix rows |
+| GPA0-5 | 列 0-5<br>Column 0-5 | マトリクス列<br>Matrix columns |
 | GPA6 | （予約）<br>(Reserved) | - |
 | GPA7 | （予約）<br>(Reserved) | - |
 | GPB0-5 | 個別キー 0-5<br>Direct Key 0-5 | 個別キー<br>Individual keys |
@@ -149,7 +159,7 @@ MCP23017 (左 / Left)
 XIAO BLE (右 - Central / Right - Central)
 ├─ D0 (SDA) ────────────┬─ MCP23017 SDA
 ├─ D1 (SCL) ────────────┼─ MCP23017 SCL
-├─ D2-D5 ───────────────┼─ マトリクス列 0-3 / Matrix Columns 0-3
+├─ D2-D5 ───────────────┼─ マトリクス行 0-3 / Matrix Rows 0-3
 ├─ D6 ──────────────────┼─ 水平エンコーダーSW / Horizontal Encoder SW
 ├─ D7 ──────────────────┼─ PMW3610 CS
 ├─ D8 (MOSI) ───────────┼─ PMW3610 MOSI
@@ -158,7 +168,7 @@ XIAO BLE (右 - Central / Right - Central)
 └─ GND/3.3V ────────────┴─ MCP23017 + PMW3610 電源 / Power
 
 MCP23017 (右 / Right)
-├─ GPA0-GPA5 ───────────── マトリクス行 0-5 / Matrix Rows 0-5
+├─ GPA0-GPA5 ───────────── マトリクス列 0-5 / Matrix Columns 0-5
 ├─ GPB0-GPB5 ───────────── 個別キー 0-5 / Direct Keys 0-5
 └─ GPB6-GPB7 ───────────── 水平エンコーダー A/B / Horizontal Encoder A/B
 ```
@@ -169,49 +179,52 @@ MCP23017 (右 / Right)
 
 ### 物理的なキー配置（片側30キー）/ Physical Key Arrangement (30 keys per side)
 
+**マトリクス構成: 4行 × 6列 + 6個別キー = 30キー（片側）**
+**Matrix Configuration: 4 rows × 6 columns + 6 direct keys = 30 keys (per side)**
+
 ```
 左手側（30キー）/ Left Side (30 keys):
-┌────┬────┬────┬────┐
-│ Q  │ W  │ E  │ R  │  マトリクス 4×6（24キー）/ Matrix 4×6 (24 keys)
-├────┼────┼────┼────┤
-│ A  │ S  │ D  │ F  │
-├────┼────┼────┼────┤
-│ Z  │ X  │ C  │ V  │
-├────┼────┼────┼────┤
-│ESC │TAB │SHFT│CTRL│
-├────┼────┼────┼────┤
-│ L1 │ L2 │ L3 │ L4 │
-├────┼────┼────┼────┤
-│SPC │BSPC│RET │GUI │
-└────┴────┴────┴────┘
 ┌────┬────┬────┬────┬────┬────┐
-│ T  │ G  │ B  │ALT │DEL │HOME│  個別キー（6個）/ Direct keys (6)
+│ Q  │ W  │ E  │ R  │ T  │ Y  │  行0 / Row 0
+├────┼────┼────┼────┼────┼────┤
+│ A  │ S  │ D  │ F  │ G  │ H  │  行1 / Row 1
+├────┼────┼────┼────┼────┼────┤
+│ Z  │ X  │ C  │ V  │ B  │ N  │  行2 / Row 2
+├────┼────┼────┼────┼────┼────┤
+│ESC │TAB │SHFT│CTRL│ALT │GUI │  行3 / Row 3
+└────┴────┴────┴────┴────┴────┘
+ 列0  列1  列2  列3  列4  列5
+ C0   C1   C2   C3   C4   C5
+
+個別キー（6個）/ Direct keys (6):
+┌────┬────┬────┬────┬────┬────┐
+│ L1 │ L2 │ L3 │ L4 │SPC │BSPC│
 └────┴────┴────┴────┴────┴────┘
 
 右手側（30キー）/ Right Side (30 keys):
-┌────┬────┬────┬────┐
-│ 7  │ 8  │ 9  │ -  │  マトリクス 4×6（24キー）/ Matrix 4×6 (24 keys)
-├────┼────┼────┼────┤
-│ 4  │ 5  │ 6  │ +  │
-├────┼────┼────┼────┤
-│ 1  │ 2  │ 3  │ *  │
-├────┼────┼────┼────┤
-│ 0  │ .  │ ,  │ /  │
-├────┼────┼────┼────┤
-│ ↑  │ ↓  │ ←  │ →  │
-├────┼────┼────┼────┤
-│PgUp│PgDn│Home│End │
-└────┴────┴────┴────┘
 ┌────┬────┬────┬────┬────┬────┐
-│RET │BSPC│DEL │INS │RALT│CTRL│  個別キー（6個）/ Direct keys (6)
+│ 7  │ 8  │ 9  │ -  │ =  │BSPC│  行0 / Row 0
+├────┼────┼────┼────┼────┼────┤
+│ 4  │ 5  │ 6  │ +  │ *  │ /  │  行1 / Row 1
+├────┼────┼────┼────┼────┼────┤
+│ 1  │ 2  │ 3  │ .  │ ,  │RET │  行2 / Row 2
+├────┼────┼────┼────┼────┼────┤
+│ 0  │ ↑  │ ↓  │ ←  │ →  │DEL │  行3 / Row 3
+└────┴────┴────┴────┴────┴────┘
+ 列0  列1  列2  列3  列4  列5
+ C0   C1   C2   C3   C4   C5
+
+個別キー（6個）/ Direct keys (6):
+┌────┬────┬────┬────┬────┬────┐
+│PgUp│PgDn│Home│End │RALT│CTRL│
 └────┴────┴────┴────┴────┴────┘
 ```
 
 ### マトリクススキャン方式 / Matrix Scanning Pattern
 
-**4列（MCU GPIO D2-D5）× 6行（MCP GPA0-5）/ 4 Columns (MCU GPIO D2-D5) × 6 Rows (MCP GPA0-5)**
+**6列（MCP GPA0-5）× 4行（MCU GPIO D2-D5）/ 6 Columns (MCP GPA0-5) × 4 Rows (MCU GPIO D2-D5)**
 - マトリクスキー合計: 24個 / Total matrix keys: 24
-- スキャン方式: 列を LOW 出力、行を入力読み取り / Scanning: Column outputs LOW, read row inputs
+- スキャン方式: 列を HIGH 出力、行を入力読み取り / Scanning: Column outputs HIGH, read row inputs
 - ダイオード: COL2ROW（カソードを行、アノードを列に接続）/ Diodes: COL2ROW (cathode to row, anode to column)
 
 **6個の個別キー（MCP GPB0-5）/ 6 Direct Keys (MCP GPB0-5)**

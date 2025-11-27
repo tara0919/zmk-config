@@ -15,6 +15,7 @@
     /* ============================================================
      * Keymap Configuration
      * Total: 60 keys (30 per side)
+     * Layout per side: 6 cols x 4 rows + 6 direct keys
      * Layers: 5 (0~4)
      * ============================================================ */
     
@@ -25,6 +26,7 @@
          * Layer 0 - Default Layer
          * Left side: QWERTY layout + thumb keys
          * Right side: Number pad + navigation
+         * Layout: 4 rows x 6 cols + 6 direct keys per side
          * ============================================================ */
         
         default_layer {
@@ -32,28 +34,22 @@
             
             bindings = <
                 /* Left side (30 keys) */
-                /* Matrix 4x6 */
-                &kp Q      &kp W      &kp E      &kp R
-                &kp A      &kp S      &kp D      &kp F
-                &kp Z      &kp X      &kp C      &kp V
-                &kp ESC    &kp TAB    &kp LSHFT  &kp LCTRL
-                &to 1      &to 2      &to 3      &to 4
-                &kp SPACE  &kp BSPC   &kp RET    &kp LGUI
+                /* Matrix 6x4 */
+                &kp Q      &kp W      &kp E      &kp R      &kp T      &kp Y
+                &kp A      &kp S      &kp D      &kp F      &kp G      &kp H
+                &kp Z      &kp X      &kp C      &kp V      &kp B      &kp N
+                &kp ESC    &kp TAB    &kp LSHFT  &kp LCTRL  &kp LALT   &kp LGUI
                 /* Direct keys (6) */
-                &kp T      &kp G      &kp B      &kp LALT
-                &kp DEL    &kp HOME
+                &to 1      &to 2      &to 3      &to 4      &kp SPACE  &kp BSPC
                 
                 /* Right side (30 keys) */
-                /* Matrix 4x6 */
-                &kp N7     &kp N8     &kp N9     &kp KP_MINUS
-                &kp N4     &kp N5     &kp N6     &kp KP_PLUS
-                &kp N1     &kp N2     &kp N3     &kp KP_MULTIPLY
-                &kp N0     &kp DOT    &kp COMMA  &kp KP_DIVIDE
-                &kp UP     &kp DOWN   &kp LEFT   &kp RIGHT
-                &kp PGUP   &kp PGDN   &kp HOME   &kp END
+                /* Matrix 6x4 */
+                &kp N7     &kp N8     &kp N9     &kp MINUS  &kp EQUAL  &kp BSPC
+                &kp N4     &kp N5     &kp N6     &kp PLUS   &kp STAR   &kp SLASH
+                &kp N1     &kp N2     &kp N3     &kp DOT    &kp COMMA  &kp RET
+                &kp N0     &kp UP     &kp DOWN   &kp LEFT   &kp RIGHT  &kp DEL
                 /* Direct keys (6) */
-                &kp RET    &kp BSPC   &kp DEL    &kp INS
-                &kp RALT   &kp RCTRL
+                &kp PGUP   &kp PGDN   &kp HOME   &kp END    &kp RALT   &kp RCTRL
             >;
             
             /* ============================================================
@@ -73,6 +69,7 @@
         /* ============================================================
          * Layer 1 - Function Layer
          * Function keys and media controls
+         * Layout: 4 rows x 6 cols + 6 direct keys per side
          * ============================================================ */
         
         layer_1 {
@@ -80,24 +77,18 @@
             
             bindings = <
                 /* Left side */
-                &kp F1     &kp F2     &kp F3     &kp F4
-                &kp F5     &kp F6     &kp F7     &kp F8
-                &kp F9     &kp F10    &kp F11    &kp F12
-                &trans     &trans     &trans     &trans
-                &to 0      &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &kp F1     &kp F2     &kp F3     &kp F4     &kp F5     &kp F6
+                &kp F7     &kp F8     &kp F9     &kp F10    &kp F11    &kp F12
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &to 0      &trans     &trans     &trans     &trans     &trans
                 
                 /* Right side */
-                &kp C_PREV &kp C_PLAY_PAUSE &kp C_NEXT &kp C_MUTE
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &kp C_PREV &kp C_PLAY_PAUSE &kp C_NEXT &kp C_MUTE &trans &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
             >;
             
             sensor-bindings = <
@@ -110,6 +101,7 @@
         /* ============================================================
          * Layer 2 - Symbol Layer
          * Symbols and special characters
+         * Layout: 4 rows x 6 cols + 6 direct keys per side
          * ============================================================ */
         
         layer_2 {
@@ -117,24 +109,18 @@
             
             bindings = <
                 /* Left side */
-                &kp EXCL   &kp AT     &kp HASH   &kp DLLR
-                &kp PRCNT  &kp CARET  &kp AMPS   &kp STAR
-                &kp LPAR   &kp RPAR   &kp LBRC   &kp RBRC
-                &trans     &trans     &trans     &trans
-                &trans     &to 0      &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT  &kp CARET
+                &kp AMPS   &kp STAR   &kp LPAR   &kp RPAR   &kp LBRC   &kp RBRC
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &to 0      &trans     &trans     &trans     &trans
                 
                 /* Right side */
-                &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT
-                &kp BSLH   &kp PIPE   &kp SEMI   &kp COLON
-                &kp APOS   &kp DQT    &kp COMMA  &kp DOT
-                &kp GRAVE  &kp TILDE  &kp LT     &kp GT
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT   &kp BSLH   &kp PIPE
+                &kp SEMI   &kp COLON  &kp APOS   &kp DQT    &kp COMMA  &kp DOT
+                &kp GRAVE  &kp TILDE  &kp LT     &kp GT     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
             >;
             
             sensor-bindings = <
@@ -147,6 +133,7 @@
         /* ============================================================
          * Layer 3 - Navigation Layer
          * Arrow keys and navigation
+         * Layout: 4 rows x 6 cols + 6 direct keys per side
          * ============================================================ */
         
         layer_3 {
@@ -154,24 +141,18 @@
             
             bindings = <
                 /* Left side */
-                &trans     &trans     &trans     &trans
-                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT
-                &kp HOME   &kp PGDN   &kp PGUP   &kp END
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &to 0      &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &kp LEFT   &kp DOWN   &kp UP     &kp RIGHT  &kp HOME   &kp END
+                &kp PGDN   &kp PGUP   &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &to 0      &trans     &trans     &trans
                 
                 /* Right side */
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
             >;
             
             sensor-bindings = <
@@ -184,6 +165,7 @@
         /* ============================================================
          * Layer 4 - System Layer
          * Bluetooth controls and system functions
+         * Layout: 4 rows x 6 cols + 6 direct keys per side
          * ============================================================ */
         
         layer_4 {
@@ -191,24 +173,18 @@
             
             bindings = <
                 /* Left side */
-                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3
-                &bt BT_CLR   &trans        &trans        &trans
-                &trans       &trans        &trans        &trans
-                &trans       &trans        &trans        &trans
-                &trans       &trans        &trans        &to 0
-                &trans       &trans        &trans        &trans
-                &trans       &trans        &trans        &trans
-                &trans       &trans
+                &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_CLR &trans
+                &trans       &trans        &trans        &trans       &trans     &trans
+                &trans       &trans        &trans        &trans       &trans     &trans
+                &trans       &trans        &trans        &trans       &trans     &trans
+                &trans       &trans        &trans        &to 0        &trans     &trans
                 
                 /* Right side */
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans     &trans     &trans
-                &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
+                &trans     &trans     &trans     &trans     &trans     &trans
             >;
             
             sensor-bindings = <
